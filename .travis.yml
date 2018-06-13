@@ -3,6 +3,7 @@ jdk:
 - oraclejdk8
 
 before_deploy:
+- git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
 - mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]'
 - export project_version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
 
