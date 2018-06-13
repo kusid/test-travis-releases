@@ -3,7 +3,6 @@ jdk:
 - oraclejdk8
 
 before_deploy:
-- git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
 - mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]'
 - export project_version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
 
@@ -14,5 +13,6 @@ deploy:
   file: "test-travis-releases/target/test-travis-releases-${project_version}.jar"
   skip_cleanup: true
   on:
-    tags: true
+    repo: kusid/test-travis-releases
+    condition: $release = 'true'
   name: ${project_version}
