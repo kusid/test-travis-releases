@@ -15,4 +15,6 @@ deploy:
   skip_cleanup: true
   on:
     repo: kusid/test-travis-releases
+    branch: master
+    condition: $RELEASE_MDL = true
   name: ${project_version}
