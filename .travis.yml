@@ -1,16 +1,17 @@
 language: java
 jdk:
-- oraclejdk8
+  - oraclejdk8
 
 before_deploy:
-- mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]'
-- export project_version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
+  - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+  - mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]'
+  - export project_version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
 
 deploy:
   provider: releases
   api_key:
       secure: fuoqe6z65EF0tFYe/Q0dJ0+Ft8BRysJbMBcSTQHkxEmmun4yTO2nWJ9BUoLmXY/zrpq3eDEXDXM1wZU7dEVY5mCrIn6/f/Qq4ok2iAzZF4nJNU77h2NO5g2En9SlSAXC3VRRgy6uBSwAttImac5QNlefTPzCn3vt1e0Zu2x0umdW4oFr3lCt1GTmYuk5PA0epztK+K88rYesyCgvay66NzP2X494ywfKfFWR5lno/x00/83fLMT48SPwHEPrseulPi5lygX739AOCBvUKtIF6d1kynnaO28QXjW5UDFy00P6sWl3TMhBE2Pl5+i3eqOJd/ctFMUZAUHZBdM6MLoqedNDwXDGCbwK/6SwnoyR/CEW3pQCJ+pyy+ashXPi1yZCLFUBeDBeBVwDGbtu6POXLdPm1LM8Flbo8VRoQ0eyshvMW0FalvdJPw8JIe1rPQScUJvKYzqgoqdhnYIgYwS258NA+EsXHRY6a6dsCfa+RKr85/wGn2fmI1JxtzRWf30NlvmHTVdDwic3GqW661Rs99qYexZ6tOlWYF9A3Q5yJ/OXPUXloMIqXy78ImzW2y+r0O5iFOHwc+VEEGjWwE4ZLn49Zo6luvX/E65z312B//WX97OWn5lYPzhFhmT3dNUoJvr6jGiqJPsy0NIpjhk3x3aiVNPs08MxO/Du5uyUEqY=
-  file: "test-travis-releases/target/test-travis-releases-${project_version}.jar"
+  file: test-travis-releases/target/test-travis-releases-${project_version}.jar
   skip_cleanup: true
   on:
     repo: kusid/test-travis-releases
