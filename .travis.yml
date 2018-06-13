@@ -13,5 +13,6 @@ deploy:
   file: "test-travis-releases/target/test-travis-releases-${project_version}.jar"
   skip_cleanup: true
   on:
+    tags: true
     repo: kusid/test-travis-releases
   name: ${project_version}
