@@ -2,10 +2,17 @@ language: java
 jdk:
   - oraclejdk8
 
+cache:
+  directories:
+    - ~/.m2
+
+script:
+  - mvn clean install --batch-mode -DskipTests=true
+
 before_deploy:
-  - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
   - mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]'
   - export project_version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
+  - git tag "v${project_version}"
 
 deploy:
   provider: releases
