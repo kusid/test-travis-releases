@@ -5,7 +5,7 @@
   <parent>
     <artifactId>test-travis-releases</artifactId>
     <groupId>com.kusid</groupId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
@@ -29,7 +29,22 @@
               <descriptors>
                 <descriptor>${project.basedir}/assembly/bdsql-assembly-descriptor.xml</descriptor>
               </descriptors>
-              <finalName>xql</finalName>
+              <finalName>${project.name}</finalName>
+            </configuration>
+          </execution>
+          <execution>
+            <id>zip-component-xql-build-dist</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <appendAssemblyId>false</appendAssemblyId>
+              <attach>false</attach>
+              <descriptors>
+                <descriptor>${project.basedir}/assembly/bdsql-assembly-descriptor.xml</descriptor>
+              </descriptors>
+              <finalName>${project.name}-${project.version}-dist</finalName>
             </configuration>
           </execution>
         </executions>

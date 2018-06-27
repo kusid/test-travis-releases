@@ -21,8 +21,10 @@ deploy:
   file:
     - xdist/target/test-travis-releases-${project_version}-dist.zip
     - xdl/target/test-travis-releases-${project_version}.zip
+    - xql/target/xql--${project_version}-dist.zip
     - xstore/xloader/target/xloader-${project_version}-dist.zip
     - xstore/xloader/target/xstorOperations-${project_version}-dist.zip
+
   skip_cleanup: true
   on:
     repo: kusid/test-travis-releases
