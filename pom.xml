@@ -6,7 +6,14 @@
 
   <groupId>com.kusid</groupId>
   <artifactId>test-travis-releases</artifactId>
+  <packaging>pom</packaging>
   <version>1.0.0</version>
+  <modules>
+    <module>xdl</module>
+    <module>xstore</module>
+    <module>xql</module>
+    <module>xdist</module>
+  </modules>
 
   <properties>
     <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
