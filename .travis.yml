@@ -6,10 +6,14 @@ cache:
   directories:
     - ~/.m2
 
-script:
+before_script:
+  - echo "before script"
   - cd $RELEASE_COMPONENT
   - pwd
+
+script:
   - echo "Running script. "
+  - pwd
   - mvn clean install -DskipTests=true
 
 before_deploy:
