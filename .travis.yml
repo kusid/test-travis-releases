@@ -38,7 +38,7 @@ deploy:
     on:
       repo: kusid/test-travis-releases
       branch: master
-      condition: $RELEASE_BSQL = true
+      condition: $RELEASE_BDSQL = true
     name: BDSQL_${project_version}
 
   - provider: releases
