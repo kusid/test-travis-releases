@@ -8,13 +8,13 @@ cache:
 
 script:
   - cd $RELEASE_COMPONENT
-  - echo pwd
+  - pwd
   - echo "Running script. "
   - mvn clean install -DskipTests=true
 
 before_deploy:
   - echo "Begining deployment of ${RELEASE_COMPONENT}"
-  - echo pwd
+  - pwd
   - mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]'
   - export component_version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
 
