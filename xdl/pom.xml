@@ -150,7 +150,7 @@
             <descriptors>
               <descriptor>${project.basedir}/assembly/assembly-descriptor.xml</descriptor>
             </descriptors>
-            <finalName>${project.parent.artifactId}-${project.version}</finalName>
+            <finalName>${project.artifactId}-${project.version}-dist</finalName>
           </configuration>
         </execution>
       </executions>
