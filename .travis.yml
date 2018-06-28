@@ -1,10 +1,10 @@
 language: java
 jdk:
-  - oraclejdk8
+- oraclejdk8
 
 cache:
   directories:
-    - ~/.m2
+  - "~/.m2"
 
 before_install:
   - export REPO=`git config remote.origin.url`
@@ -27,35 +27,33 @@ before_deploy:
 deploy:
   - provider: releases
     api_key:
-      secure: fuoqe6z65EF0tFYe/Q0dJ0+Ft8BRysJbMBcSTQHkxEmmun4yTO2nWJ9BUoLmXY/zrpq3eDEXDXM1wZU7dEVY5mCrIn6/f/Qq4ok2iAzZF4nJNU77h2NO5g2En9SlSAXC3VRRgy6uBSwAttImac5QNlefTPzCn3vt1e0Zu2x0umdW4oFr3lCt1GTmYuk5PA0epztK+K88rYesyCgvay66NzP2X494ywfKfFWR5lno/x00/83fLMT48SPwHEPrseulPi5lygX739AOCBvUKtIF6d1kynnaO28QXjW5UDFy00P6sWl3TMhBE2Pl5+i3eqOJd/ctFMUZAUHZBdM6MLoqedNDwXDGCbwK/6SwnoyR/CEW3pQCJ+pyy+ashXPi1yZCLFUBeDBeBVwDGbtu6POXLdPm1LM8Flbo8VRoQ0eyshvMW0FalvdJPw8JIe1rPQScUJvKYzqgoqdhnYIgYwS258NA+EsXHRY6a6dsCfa+RKr85/wGn2fmI1JxtzRWf30NlvmHTVdDwic3GqW661Rs99qYexZ6tOlWYF9A3Q5yJ/OXPUXloMIqXy78ImzW2y+r0O5iFOHwc+VEEGjWwE4ZLn49Zo6luvX/E65z312B//WX97OWn5lYPzhFhmT3dNUoJvr6jGiqJPsy0NIpjhk3x3aiVNPs08MxO/Du5uyUEqY=
+      secure: Uro4YN687ZIFaJTSPhiAo8s9aWH+UrS2zMn1WHlrtNobReaD7LgSk5nyBjaYhiDEX6fokfOaVaQM9W5vmrNmmMxBkdDnHTEI9DlSvbnc2sZfhf0sGAvLZcRVx5fipFxCakAQcK47BDNJC+CZ5s6Zgq7kv7WZA2f7Cf1rSPBFtDo9FQ2inOVfidxG+55o8hZvoAo8jb8om/8QoXqmKxcmK1m7sQbGGnNSoIbp1+iU53hqhHY8TXMeG0Tw7e/DrvqeaNnBj8s/tcTFzg9MHqiRySKDS12FJDaSVbNNirw14X+7/ZK0GdZUHOhjnH+1YIJTI83Ia9LksJBKz0BIROUneshJqUo/V/IajN2Ee88vl4ZpsozHBxLilz4GjoIpTZPegJIy0rOtG7Thvfaj26WqQSsa7z+0PY5ol2E+NItTVJCGddQKs/+srAKSssiyuo6O5e8MYDskpB/gvTKm1dWIUWXPu8sEYka/jpoDGsQy6FcHHKQolj4ZJOoeaEye6MKxJ9QaR0o0rGfxnGklmitvsQq84eJvsmY4Tm5vnOtLg/7irb80QZZgXihP6iqbr1zrR62Flgv2qoh4gyXN7Al9X8CUk7wvyXk9A40vUEXLXKBmAOGbF4VMp/Ywa3vj7vfFhqzUw3cmT8XAXoMpF8Yns05lMjEQsord9cS9YDBwa0g=
 
     file_glob: true
-    file:
-      - "**/target/xdl-${component_version}-dist.zip"
+    file: '**/target/xdl-${component_version}-dist.zip'
     skip_cleanup: true
     on:
       repo: kusid/test-travis-releases
       branch: master
       condition: $RELEASE_COMPONENT = xdl
-    name: MDL_${component_version}
+    name: XDL_${component_version}
 
   - provider: releases
     api_key:
-      secure: fuoqe6z65EF0tFYe/Q0dJ0+Ft8BRysJbMBcSTQHkxEmmun4yTO2nWJ9BUoLmXY/zrpq3eDEXDXM1wZU7dEVY5mCrIn6/f/Qq4ok2iAzZF4nJNU77h2NO5g2En9SlSAXC3VRRgy6uBSwAttImac5QNlefTPzCn3vt1e0Zu2x0umdW4oFr3lCt1GTmYuk5PA0epztK+K88rYesyCgvay66NzP2X494ywfKfFWR5lno/x00/83fLMT48SPwHEPrseulPi5lygX739AOCBvUKtIF6d1kynnaO28QXjW5UDFy00P6sWl3TMhBE2Pl5+i3eqOJd/ctFMUZAUHZBdM6MLoqedNDwXDGCbwK/6SwnoyR/CEW3pQCJ+pyy+ashXPi1yZCLFUBeDBeBVwDGbtu6POXLdPm1LM8Flbo8VRoQ0eyshvMW0FalvdJPw8JIe1rPQScUJvKYzqgoqdhnYIgYwS258NA+EsXHRY6a6dsCfa+RKr85/wGn2fmI1JxtzRWf30NlvmHTVdDwic3GqW661Rs99qYexZ6tOlWYF9A3Q5yJ/OXPUXloMIqXy78ImzW2y+r0O5iFOHwc+VEEGjWwE4ZLn49Zo6luvX/E65z312B//WX97OWn5lYPzhFhmT3dNUoJvr6jGiqJPsy0NIpjhk3x3aiVNPs08MxO/Du5uyUEqY=
+      secure: Uro4YN687ZIFaJTSPhiAo8s9aWH+UrS2zMn1WHlrtNobReaD7LgSk5nyBjaYhiDEX6fokfOaVaQM9W5vmrNmmMxBkdDnHTEI9DlSvbnc2sZfhf0sGAvLZcRVx5fipFxCakAQcK47BDNJC+CZ5s6Zgq7kv7WZA2f7Cf1rSPBFtDo9FQ2inOVfidxG+55o8hZvoAo8jb8om/8QoXqmKxcmK1m7sQbGGnNSoIbp1+iU53hqhHY8TXMeG0Tw7e/DrvqeaNnBj8s/tcTFzg9MHqiRySKDS12FJDaSVbNNirw14X+7/ZK0GdZUHOhjnH+1YIJTI83Ia9LksJBKz0BIROUneshJqUo/V/IajN2Ee88vl4ZpsozHBxLilz4GjoIpTZPegJIy0rOtG7Thvfaj26WqQSsa7z+0PY5ol2E+NItTVJCGddQKs/+srAKSssiyuo6O5e8MYDskpB/gvTKm1dWIUWXPu8sEYka/jpoDGsQy6FcHHKQolj4ZJOoeaEye6MKxJ9QaR0o0rGfxnGklmitvsQq84eJvsmY4Tm5vnOtLg/7irb80QZZgXihP6iqbr1zrR62Flgv2qoh4gyXN7Al9X8CUk7wvyXk9A40vUEXLXKBmAOGbF4VMp/Ywa3vj7vfFhqzUw3cmT8XAXoMpF8Yns05lMjEQsord9cS9YDBwa0g=
 
     file_glob: true
-    file:
-      - "**/target/xql-${component_version}-dist.zip"
+    file: '**/target/xql-${component_version}-dist.zip'
     skip_cleanup: true
     on:
       repo: kusid/test-travis-releases
       branch: master
       condition: $RELEASE_COMPONENT = xql
-    name: BDSQL_${component_version}
+    name: XQL_${component_version}
 
   - provider: releases
     api_key:
-      secure: fuoqe6z65EF0tFYe/Q0dJ0+Ft8BRysJbMBcSTQHkxEmmun4yTO2nWJ9BUoLmXY/zrpq3eDEXDXM1wZU7dEVY5mCrIn6/f/Qq4ok2iAzZF4nJNU77h2NO5g2En9SlSAXC3VRRgy6uBSwAttImac5QNlefTPzCn3vt1e0Zu2x0umdW4oFr3lCt1GTmYuk5PA0epztK+K88rYesyCgvay66NzP2X494ywfKfFWR5lno/x00/83fLMT48SPwHEPrseulPi5lygX739AOCBvUKtIF6d1kynnaO28QXjW5UDFy00P6sWl3TMhBE2Pl5+i3eqOJd/ctFMUZAUHZBdM6MLoqedNDwXDGCbwK/6SwnoyR/CEW3pQCJ+pyy+ashXPi1yZCLFUBeDBeBVwDGbtu6POXLdPm1LM8Flbo8VRoQ0eyshvMW0FalvdJPw8JIe1rPQScUJvKYzqgoqdhnYIgYwS258NA+EsXHRY6a6dsCfa+RKr85/wGn2fmI1JxtzRWf30NlvmHTVdDwic3GqW661Rs99qYexZ6tOlWYF9A3Q5yJ/OXPUXloMIqXy78ImzW2y+r0O5iFOHwc+VEEGjWwE4ZLn49Zo6luvX/E65z312B//WX97OWn5lYPzhFhmT3dNUoJvr6jGiqJPsy0NIpjhk3x3aiVNPs08MxO/Du5uyUEqY=
+      secure: Uro4YN687ZIFaJTSPhiAo8s9aWH+UrS2zMn1WHlrtNobReaD7LgSk5nyBjaYhiDEX6fokfOaVaQM9W5vmrNmmMxBkdDnHTEI9DlSvbnc2sZfhf0sGAvLZcRVx5fipFxCakAQcK47BDNJC+CZ5s6Zgq7kv7WZA2f7Cf1rSPBFtDo9FQ2inOVfidxG+55o8hZvoAo8jb8om/8QoXqmKxcmK1m7sQbGGnNSoIbp1+iU53hqhHY8TXMeG0Tw7e/DrvqeaNnBj8s/tcTFzg9MHqiRySKDS12FJDaSVbNNirw14X+7/ZK0GdZUHOhjnH+1YIJTI83Ia9LksJBKz0BIROUneshJqUo/V/IajN2Ee88vl4ZpsozHBxLilz4GjoIpTZPegJIy0rOtG7Thvfaj26WqQSsa7z+0PY5ol2E+NItTVJCGddQKs/+srAKSssiyuo6O5e8MYDskpB/gvTKm1dWIUWXPu8sEYka/jpoDGsQy6FcHHKQolj4ZJOoeaEye6MKxJ9QaR0o0rGfxnGklmitvsQq84eJvsmY4Tm5vnOtLg/7irb80QZZgXihP6iqbr1zrR62Flgv2qoh4gyXN7Al9X8CUk7wvyXk9A40vUEXLXKBmAOGbF4VMp/Ywa3vj7vfFhqzUw3cmT8XAXoMpF8Yns05lMjEQsord9cS9YDBwa0g=
 
     file_glob: true
     file:
@@ -66,4 +64,4 @@ deploy:
       repo: kusid/test-travis-releases
       branch: master
       condition: $RELEASE_COMPONENT = xstore
-    name: METASTOR_${component_version}
+    name: XSTORE_${component_version}
