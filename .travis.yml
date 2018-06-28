@@ -7,7 +7,12 @@ cache:
     - ~/.m2
 
 before_install:
-  - echo "before script"
+  - export REPO=`git config remote.origin.url`
+  - echo $REPO
+  - git clone $REPO public
+  - cd public
+  - ls -lA
+  - pwd
   - cd $RELEASE_COMPONENT
   - pwd
   - ls -lA
