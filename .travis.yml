@@ -55,7 +55,7 @@ deploy:
     file_glob: true
     file:
       - "**/target/xloader-${component_version}-dist.zip"
-      - "**/target/xstorOperations-${component_version}-dist.zip"ss
+      - "**/target/xstorOperations-${component_version}-dist.zip"
 
     skip_cleanup: true
     on:
