@@ -7,6 +7,7 @@ cache:
     - ~/.m2
 
 script:
+  - cd $BUILD_DIRECTORY
   - mvn clean install --batch-mode -DskipTests=true
 
 before_deploy:
@@ -26,6 +27,7 @@ deploy:
       repo: kusid/test-travis-releases
       branch: master
       condition: $RELEASE_MDL = true
+    overwrite: false
     name: MDL_${project_version}
 
   - provider: releases
@@ -39,6 +41,7 @@ deploy:
       repo: kusid/test-travis-releases
       branch: master
       condition: $RELEASE_BDSQL = true
+    overwrite: false
     name: BDSQL_${project_version}
 
   - provider: releases
@@ -53,4 +56,5 @@ deploy:
       repo: kusid/test-travis-releases
       branch: master
       condition: $RELEASE_METASTOR = true
+    overwrite: false
     name: METASTOR_${project_version}

@@ -5,11 +5,12 @@
   <parent>
     <artifactId>xstore</artifactId>
     <groupId>com.kusid</groupId>
-    <version>1.7.0</version>
+    <version>1.8.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>xloader</artifactId>
+  <version>2.0.0</version>
 
   <properties>
     <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
