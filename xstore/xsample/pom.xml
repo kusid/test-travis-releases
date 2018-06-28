@@ -5,11 +5,12 @@
   <parent>
     <artifactId>xstore</artifactId>
     <groupId>com.kusid</groupId>
-    <version>1.7.0</version>
+    <version>9.0.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>xsample</artifactId>
+  <version>9.0.0</version>
 
   <properties>
     <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
@@ -30,7 +31,7 @@
           <descriptors>
             <descriptor>assembly/assembly.xml</descriptor>
           </descriptors>
-          <finalName>${module.name}-${project.parent.version}-dist</finalName>
+          <finalName>${module.name}-${project.version}-dist</finalName>
         </configuration>
         <executions>
           <execution>
