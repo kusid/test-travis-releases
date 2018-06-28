@@ -12,7 +12,6 @@ script:
 before_deploy:
   - mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]'
   - export project_version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
-  - git tag "v${project_version}"
 
 deploy:
   - provider: releases
