@@ -6,11 +6,21 @@ cache:
   directories:
     - ~/.m2
 
-script:
+before_install:
+  - export REPO=`git config remote.origin.url`
+  - echo $REPO
+  - git clone $REPO public
+  - cd public
+  - ls -lA
+  - pwd
   - cd $RELEASE_COMPONENT
-  - mvn clean install -DskipTests=true
+  - pwd
+  - ls -lA
 
 before_deploy:
+  - echo "Begining deployment of ${RELEASE_COMPONENT}"
+  - pwd
+  - ls -lA
   - mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]'
   - export component_version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
 
@@ -18,12 +28,9 @@ deploy:
   - provider: releases
     api_key:
       secure: fuoqe6z65EF0tFYe/Q0dJ0+Ft8BRysJbMBcSTQHkxEmmun4yTO2nWJ9BUoLmXY/zrpq3eDEXDXM1wZU7dEVY5mCrIn6/f/Qq4ok2iAzZF4nJNU77h2NO5g2En9SlSAXC3VRRgy6uBSwAttImac5QNlefTPzCn3vt1e0Zu2x0umdW4oFr3lCt1GTmYuk5PA0epztK+K88rYesyCgvay66NzP2X494ywfKfFWR5lno/x00/83fLMT48SPwHEPrseulPi5lygX739AOCBvUKtIF6d1kynnaO28QXjW5UDFy00P6sWl3TMhBE2Pl5+i3eqOJd/ctFMUZAUHZBdM6MLoqedNDwXDGCbwK/6SwnoyR/CEW3pQCJ+pyy+ashXPi1yZCLFUBeDBeBVwDGbtu6POXLdPm1LM8Flbo8VRoQ0eyshvMW0FalvdJPw8JIe1rPQScUJvKYzqgoqdhnYIgYwS258NA+EsXHRY6a6dsCfa+RKr85/wGn2fmI1JxtzRWf30NlvmHTVdDwic3GqW661Rs99qYexZ6tOlWYF9A3Q5yJ/OXPUXloMIqXy78ImzW2y+r0O5iFOHwc+VEEGjWwE4ZLn49Zo6luvX/E65z312B//WX97OWn5lYPzhFhmT3dNUoJvr6jGiqJPsy0NIpjhk3x3aiVNPs08MxO/Du5uyUEqY=
-    script:
-      - git tag $RELEASE_COMPONENT-v${component_version}
     file_glob: true
     file:
       - "**/target/xdl-${component_version}-dist.zip"
-
     skip_cleanup: true
     on:
       repo: kusid/test-travis-releases
@@ -34,12 +41,9 @@ deploy:
   - provider: releases
     api_key:
       secure: fuoqe6z65EF0tFYe/Q0dJ0+Ft8BRysJbMBcSTQHkxEmmun4yTO2nWJ9BUoLmXY/zrpq3eDEXDXM1wZU7dEVY5mCrIn6/f/Qq4ok2iAzZF4nJNU77h2NO5g2En9SlSAXC3VRRgy6uBSwAttImac5QNlefTPzCn3vt1e0Zu2x0umdW4oFr3lCt1GTmYuk5PA0epztK+K88rYesyCgvay66NzP2X494ywfKfFWR5lno/x00/83fLMT48SPwHEPrseulPi5lygX739AOCBvUKtIF6d1kynnaO28QXjW5UDFy00P6sWl3TMhBE2Pl5+i3eqOJd/ctFMUZAUHZBdM6MLoqedNDwXDGCbwK/6SwnoyR/CEW3pQCJ+pyy+ashXPi1yZCLFUBeDBeBVwDGbtu6POXLdPm1LM8Flbo8VRoQ0eyshvMW0FalvdJPw8JIe1rPQScUJvKYzqgoqdhnYIgYwS258NA+EsXHRY6a6dsCfa+RKr85/wGn2fmI1JxtzRWf30NlvmHTVdDwic3GqW661Rs99qYexZ6tOlWYF9A3Q5yJ/OXPUXloMIqXy78ImzW2y+r0O5iFOHwc+VEEGjWwE4ZLn49Zo6luvX/E65z312B//WX97OWn5lYPzhFhmT3dNUoJvr6jGiqJPsy0NIpjhk3x3aiVNPs08MxO/Du5uyUEqY=
-    script:
-      - bash 'git tag $RELEASE_COMPONENT-v${component_version}'
     file_glob: true
     file:
-      - "**/xql-${component_version}-dist.zip"
-
+      - "**/target/xql-${component_version}-dist.zip"
     skip_cleanup: true
     on:
       repo: kusid/test-travis-releases
@@ -50,13 +54,10 @@ deploy:
   - provider: releases
     api_key:
       secure: fuoqe6z65EF0tFYe/Q0dJ0+Ft8BRysJbMBcSTQHkxEmmun4yTO2nWJ9BUoLmXY/zrpq3eDEXDXM1wZU7dEVY5mCrIn6/f/Qq4ok2iAzZF4nJNU77h2NO5g2En9SlSAXC3VRRgy6uBSwAttImac5QNlefTPzCn3vt1e0Zu2x0umdW4oFr3lCt1GTmYuk5PA0epztK+K88rYesyCgvay66NzP2X494ywfKfFWR5lno/x00/83fLMT48SPwHEPrseulPi5lygX739AOCBvUKtIF6d1kynnaO28QXjW5UDFy00P6sWl3TMhBE2Pl5+i3eqOJd/ctFMUZAUHZBdM6MLoqedNDwXDGCbwK/6SwnoyR/CEW3pQCJ+pyy+ashXPi1yZCLFUBeDBeBVwDGbtu6POXLdPm1LM8Flbo8VRoQ0eyshvMW0FalvdJPw8JIe1rPQScUJvKYzqgoqdhnYIgYwS258NA+EsXHRY6a6dsCfa+RKr85/wGn2fmI1JxtzRWf30NlvmHTVdDwic3GqW661Rs99qYexZ6tOlWYF9A3Q5yJ/OXPUXloMIqXy78ImzW2y+r0O5iFOHwc+VEEGjWwE4ZLn49Zo6luvX/E65z312B//WX97OWn5lYPzhFhmT3dNUoJvr6jGiqJPsy0NIpjhk3x3aiVNPs08MxO/Du5uyUEqY=
-    script:
-      - git tag $RELEASE_COMPONENT-v${component_version}
     file_glob: true
     file:
       - "**/target/xloader-${component_version}-dist.zip"
       - "**/target/xstorOperations-${component_version}-dist.zip"
-
     skip_cleanup: true
     on:
       repo: kusid/test-travis-releases
