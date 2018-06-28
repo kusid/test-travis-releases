@@ -25,7 +25,7 @@ deploy:
     on:
       repo: kusid/test-travis-releases
       branch: master
-      condition: $RELEASE_COMPONENT = mdl
+      condition: $RELEASE_COMPONENT = xdl
     name: MDL_${component_version}
 
   - provider: releases
@@ -38,7 +38,7 @@ deploy:
     on:
       repo: kusid/test-travis-releases
       branch: master
-      condition: $RELEASE_COMPONENT = bdsql
+      condition: $RELEASE_COMPONENT = xql
     name: BDSQL_${component_version}
 
   - provider: releases
@@ -52,5 +52,5 @@ deploy:
     on:
       repo: kusid/test-travis-releases
       branch: master
-      condition: $RELEASE_COMPONENT = metastor
+      condition: $RELEASE_COMPONENT = xstore
     name: METASTOR_${component_version}
