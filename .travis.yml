@@ -10,10 +10,12 @@ before_install:
   - echo "before script"
   - cd $RELEASE_COMPONENT
   - pwd
+  - ls -lA
 
 before_deploy:
   - echo "Begining deployment of ${RELEASE_COMPONENT}"
   - pwd
+  - ls -lA
   - mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]'
   - export component_version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
 
