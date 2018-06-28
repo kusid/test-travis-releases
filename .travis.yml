@@ -13,6 +13,7 @@ before_deploy:
   - cd $RELEASE_COMPONENT
   - mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]'
   - export component_version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
+  - git tag $RELEASE_COMPONENT-v${component_version}
 
 deploy:
   - provider: releases
