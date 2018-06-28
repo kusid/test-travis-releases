@@ -8,11 +8,11 @@
   <artifactId>test-travis-releases</artifactId>
   <packaging>pom</packaging>
   <version>1.8.0</version>
+
   <modules>
     <module>xdl</module>
     <module>xstore</module>
     <module>xql</module>
-    <module>xdist</module>
   </modules>
 
   <properties>
