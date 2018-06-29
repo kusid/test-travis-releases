@@ -21,10 +21,7 @@ before_deploy:
   - ls -lA
   - mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]'
   - export component_version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
-  - |
-    if [ -z "${RELEASE_COMPONENT}" ]; then
-      git tag "${RELEASE_COMPONENT}-v${component_version}"
-    fi
+  - if [ -z "${RELEASE_COMPONENT}" ]; then git tag "${RELEASE_COMPONENT}-v${component_version}"; fi
 
 deploy:
   - provider: releases
