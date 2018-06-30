@@ -33,7 +33,7 @@ deploy:
     skip_cleanup: true
     on:
       repo: kusid/test-travis-releases
-      branch: master
+      tags: true
       condition: ${RELEASE_COMPONENT} = xdl
     name: ${RELEASE_COMPONENT}-${component_version}
 
@@ -45,7 +45,7 @@ deploy:
     skip_cleanup: true
     on:
       repo: kusid/test-travis-releases
-      branch: master
+      tags: true
       condition: ${RELEASE_COMPONENT} = xql
     name: ${RELEASE_COMPONENT}-${component_version}
 
@@ -59,6 +59,6 @@ deploy:
     skip_cleanup: true
     on:
       repo: kusid/test-travis-releases
-      branch: master
+      tags: true
       condition: ${RELEASE_COMPONENT} = xstore
     name: ${RELEASE_COMPONENT}-${component_version}
