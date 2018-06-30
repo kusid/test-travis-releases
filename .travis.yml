@@ -16,6 +16,18 @@ before_install:
   - pwd
   - ls -lA
 
+# skip install phase
+install: true
+
+# skip tests during the install phase
+script:
+  - mvn clean install -U -e -DskipTests=true
+
+# echo location
+after_script:
+  - ls -lA
+
+# tag before releasing to github
 before_deploy:
   - echo "Beginning deployment of ${RELEASE_COMPONENT}"
   - pwd
