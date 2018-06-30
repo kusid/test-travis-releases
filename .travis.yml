@@ -12,16 +12,17 @@ before_install:
   - cd public
   - ls -lA
   - cd $RELEASE_COMPONENT
+  - echo $RELEASE_COMPONENT
   - pwd
   - ls -lA
 
 before_deploy:
-  - echo "Begining deployment of ${RELEASE_COMPONENT}"
+  - echo "Beginning deployment of ${RELEASE_COMPONENT}"
   - pwd
   - ls -lA
   - mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]'
   - export component_version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
-  - if [ -z "${RELEASE_COMPONENT}" ]; then git tag "${RELEASE_COMPONENT}-v${component_version}"; fi
+  - if [ -n "${RELEASE_COMPONENT}" ]; then git tag "${RELEASE_COMPONENT}-v${component_version}"; fi
 
 deploy:
   - provider: releases
