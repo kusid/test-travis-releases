@@ -24,11 +24,12 @@ script:
   - mvn clean install -U -e -DskipTests=true
   - mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]'
   - export component_version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
-  - if [ -n "${RELEASE_COMPONENT}" ]; then git tag "${RELEASE_COMPONENT}-v${component_version}"; fi
+  - echo "component version is ${component_version}"
+  - if [ -n "$RELEASE_COMPONENT" ]; then git tag "${RELEASE_COMPONENT}-v${component_version}"; fi
 
 # echo git tags
 after_script:
-  - git tags
+  - git tag
 
 # pre-deploy steps
 before_deploy:
