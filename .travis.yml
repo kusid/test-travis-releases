@@ -19,22 +19,22 @@ before_install:
 # skip install phase
 install: true
 
-# skip tests during the install phase
+# skip tests during the script phase
 script:
   - mvn clean install -U -e -DskipTests=true
+  - mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]'
+  - export component_version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
+  - if [ -n "${RELEASE_COMPONENT}" ]; then git tag "${RELEASE_COMPONENT}-v${component_version}"; fi
 
-# echo location
+# echo git tags
 after_script:
-  - ls -lA
+  - git tags
 
-# tag before releasing to github
+# pre-deploy steps
 before_deploy:
   - echo "Beginning deployment of ${RELEASE_COMPONENT}"
   - pwd
   - ls -lA
-  - mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]'
-  - export component_version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
-  - if [ -n "${RELEASE_COMPONENT}" ]; then git tag "${RELEASE_COMPONENT}-v${component_version}"; fi
 
 deploy:
   - provider: releases
