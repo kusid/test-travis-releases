@@ -28,6 +28,7 @@ before_deploy:
   - pwd
   - ls -lA
   - if [ "$RELEASE" = "true" ]; then git tag "${RELEASE_COMPONENT}-v${component_version}"; fi
+  - git push origin --tags
 
 deploy:
   - provider: releases
