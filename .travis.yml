@@ -5,24 +5,18 @@ cache:
   directories:
   - "~/.m2"
 
-before_install:
-  - export REPO=`git config remote.origin.url`
-  - echo $REPO
-  - git clone $REPO public
-  - cd public
-  - ls -lA
-  - cd $RELEASE_COMPONENT
-  - echo $RELEASE_COMPONENT
-  - pwd
-  - ls -lA
-
 # skip tests during the script phase
 script:
+  - cd $RELEASE_COMPONENT
   - mvn clean install -U -e -DskipTests=true
   - mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]'
   - export component_version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
   - echo "component version is ${component_version}"
-  - if [ -n "$RELEASE_COMPONENT" ]; then git tag "${RELEASE_COMPONENT}-v${component_version}"; fi
+  - if [ "$RELEASE" -eq "true" ]; then git tag "${RELEASE_COMPONENT}-v${component_version}"; fi
+
+branches:
+  only:
+    - master
 
 # echo git tags
 after_script:
