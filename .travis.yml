@@ -60,8 +60,8 @@ deploy:
     api_key:
       secure: GT2+1ULIbQaeqeCy1JVYr0cCTcRnKyrWTGaouJKVbjibJ6BR4Q+OmNc6kTG2w76axmLFwcIj+pPhLUKKh8p8Wxn9/leTZBaXcfkXTcR6Fm6Cg+uMLHffKtaUC0bN9EbfH0THkC+MNwWkxFlagsxYgcKpfDT4LL4u1lLOhuT94HUk5o3Hn88vQ+aNiiAzyc0MrinMP8HUgwY3702gUM4/b8KJMbctmFM9XOaGosYWE8Eklzvv6yYVHYHwcjIjKa1T81SYfJ1i+oxfdJyc6EznYFa52FLdVVH+kpjXgnfvdnjv3lT7kty94Oi7YV9VF3xhDVwNK2E5rOkJ0ptVLZyFGTbVIDGkN7ppVLx5Lux1GeqoG/ye39/I/HBd/VmQxCz+37dPRp/Ge7at03m68IAV1ShwxHchOcIeTqRN0/kRme87fuyKwTgFlHHaMsn1Kltpg+UptH8QKpKv08iaR2T/JrvmbHPOgbTjnHYdDST1wUUrgUqgQlLaMDVvQmjtjqBHGvFLjJg9pdgTk5mbzxaRxVLD+DJLUauV53aqNFzIFmVfXhxAZilmmNla+PCP3z5QU9rawAPSgJp2Wh0qGvzTI7gjeWnM+RheIB1G/paxebpRz79ZUtIN/I3OAkP9BkBZJDvc3FY9sRaQ/Q3kN4NXjT2ZNJ+flrjz3uqCJ0RmGZ8=
     file:
-      - '${TRAVIS_BUILD_DIR}/xloader/target/xloader-${component_version}-dist.zip'
-      - '${TRAVIS_BUILD_DIR}/xsample/target/xstorOperation-${component_version}-dist.zip'
+      - '${TRAVIS_BUILD_DIR}/${RELEASE_COMPONENT}/xloader/target/xloader-${component_version}-dist.zip'
+      - '${TRAVIS_BUILD_DIR}/${RELEASE_COMPONENT}/xsample/target/xstorOperation-${component_version}-dist.zip'
     skip_cleanup: true
     overwrite: false
     on:
