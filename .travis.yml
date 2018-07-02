@@ -16,9 +16,6 @@ before_install:
   - pwd
   - ls -lA
 
-# skip install phase
-install: true
-
 # skip tests during the script phase
 script:
   - mvn clean install -U -e -DskipTests=true
@@ -46,7 +43,7 @@ deploy:
     skip_cleanup: true
     on:
       repo: kusid/test-travis-releases
-      tags: true
+      branch: master
       condition: ${RELEASE_COMPONENT} = xdl
     name: ${RELEASE_COMPONENT}-${component_version}
 
@@ -58,7 +55,7 @@ deploy:
     skip_cleanup: true
     on:
       repo: kusid/test-travis-releases
-      tags: true
+      branch: master
       condition: ${RELEASE_COMPONENT} = xql
     name: ${RELEASE_COMPONENT}-${component_version}
 
@@ -72,6 +69,6 @@ deploy:
     skip_cleanup: true
     on:
       repo: kusid/test-travis-releases
-      tags: true
+      branch: master
       condition: ${RELEASE_COMPONENT} = xstore
     name: ${RELEASE_COMPONENT}-${component_version}
