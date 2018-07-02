@@ -5,7 +5,7 @@
 
   <groupId>com.kusid</groupId>
   <artifactId>xql</artifactId>
-  <version>61.0.0</version>
+  <version>71.0.0</version>
   <modelVersion>4.0.0</modelVersion>
 
   <build>
