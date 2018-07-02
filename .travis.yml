@@ -14,7 +14,6 @@ script:
   - export component_version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
   - echo "component version is ${component_version}"
   - if [ "$RELEASE" = "true" ]; then git tag "${RELEASE_COMPONENT}-v${component_version}"; fi
-  - git push origin --tags
 
 branches:
   only:
@@ -29,6 +28,7 @@ before_deploy:
   - echo "Beginning deployment of ${RELEASE_COMPONENT}"
   - pwd
   - ls -lA
+  - git push origin --tags
 
 deploy:
   - provider: releases
