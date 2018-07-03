@@ -29,43 +29,13 @@ before_deploy:
   - git push -q https://${GH_TOKEN}@github.com/kusid/test-travis-releases.git --tags
 
 deploy:
-  - provider: releases
-    api_key:
-      secure: GT2+1ULIbQaeqeCy1JVYr0cCTcRnKyrWTGaouJKVbjibJ6BR4Q+OmNc6kTG2w76axmLFwcIj+pPhLUKKh8p8Wxn9/leTZBaXcfkXTcR6Fm6Cg+uMLHffKtaUC0bN9EbfH0THkC+MNwWkxFlagsxYgcKpfDT4LL4u1lLOhuT94HUk5o3Hn88vQ+aNiiAzyc0MrinMP8HUgwY3702gUM4/b8KJMbctmFM9XOaGosYWE8Eklzvv6yYVHYHwcjIjKa1T81SYfJ1i+oxfdJyc6EznYFa52FLdVVH+kpjXgnfvdnjv3lT7kty94Oi7YV9VF3xhDVwNK2E5rOkJ0ptVLZyFGTbVIDGkN7ppVLx5Lux1GeqoG/ye39/I/HBd/VmQxCz+37dPRp/Ge7at03m68IAV1ShwxHchOcIeTqRN0/kRme87fuyKwTgFlHHaMsn1Kltpg+UptH8QKpKv08iaR2T/JrvmbHPOgbTjnHYdDST1wUUrgUqgQlLaMDVvQmjtjqBHGvFLjJg9pdgTk5mbzxaRxVLD+DJLUauV53aqNFzIFmVfXhxAZilmmNla+PCP3z5QU9rawAPSgJp2Wh0qGvzTI7gjeWnM+RheIB1G/paxebpRz79ZUtIN/I3OAkP9BkBZJDvc3FY9sRaQ/Q3kN4NXjT2ZNJ+flrjz3uqCJ0RmGZ8=
-    file: '${TRAVIS_BUILD_DIR}/${RELEASE_COMPONENT}/target/xdl-${component_version}-dist.zip'
-    skip_cleanup: true
-    overwrite: false
+  - provider: pages
+    skip-cleanup: true
+    github-token: $GH_TOKEN
+    keep-history: true
     on:
-      repo: kusid/test-travis-releases
       branch: master
-      condition: ${RELEASE_COMPONENT} = xdl && ${RELEASE} = "true"
-    name: ${RELEASE_COMPONENT}-${component_version}
-    body: Automated xdl build from $TRAVIS_BRANCH ($TRAVIS_COMMIT) built by Travis CI on $(date +'%F %T %Z').
+    target-branch: gh-pages
+    keep-history: true
 
-  - provider: releases
-    api_key:
-      secure: GT2+1ULIbQaeqeCy1JVYr0cCTcRnKyrWTGaouJKVbjibJ6BR4Q+OmNc6kTG2w76axmLFwcIj+pPhLUKKh8p8Wxn9/leTZBaXcfkXTcR6Fm6Cg+uMLHffKtaUC0bN9EbfH0THkC+MNwWkxFlagsxYgcKpfDT4LL4u1lLOhuT94HUk5o3Hn88vQ+aNiiAzyc0MrinMP8HUgwY3702gUM4/b8KJMbctmFM9XOaGosYWE8Eklzvv6yYVHYHwcjIjKa1T81SYfJ1i+oxfdJyc6EznYFa52FLdVVH+kpjXgnfvdnjv3lT7kty94Oi7YV9VF3xhDVwNK2E5rOkJ0ptVLZyFGTbVIDGkN7ppVLx5Lux1GeqoG/ye39/I/HBd/VmQxCz+37dPRp/Ge7at03m68IAV1ShwxHchOcIeTqRN0/kRme87fuyKwTgFlHHaMsn1Kltpg+UptH8QKpKv08iaR2T/JrvmbHPOgbTjnHYdDST1wUUrgUqgQlLaMDVvQmjtjqBHGvFLjJg9pdgTk5mbzxaRxVLD+DJLUauV53aqNFzIFmVfXhxAZilmmNla+PCP3z5QU9rawAPSgJp2Wh0qGvzTI7gjeWnM+RheIB1G/paxebpRz79ZUtIN/I3OAkP9BkBZJDvc3FY9sRaQ/Q3kN4NXjT2ZNJ+flrjz3uqCJ0RmGZ8=
-    file: '${TRAVIS_BUILD_DIR}/${RELEASE_COMPONENT}/target/xql-${component_version}-dist.zip'
-    skip_cleanup: true
-    overwrite: false
-    on:
-      repo: kusid/test-travis-releases
-      branch: master
-      condition: ${RELEASE_COMPONENT} = xql && ${RELEASE} = "true"
-    name: ${RELEASE_COMPONENT}-${component_version}
-    body: Automated xql build from $TRAVIS_BRANCH ($TRAVIS_COMMIT) built by Travis CI on $(date +'%F %T %Z').
 
-  - provider: releases
-    api_key:
-      secure: GT2+1ULIbQaeqeCy1JVYr0cCTcRnKyrWTGaouJKVbjibJ6BR4Q+OmNc6kTG2w76axmLFwcIj+pPhLUKKh8p8Wxn9/leTZBaXcfkXTcR6Fm6Cg+uMLHffKtaUC0bN9EbfH0THkC+MNwWkxFlagsxYgcKpfDT4LL4u1lLOhuT94HUk5o3Hn88vQ+aNiiAzyc0MrinMP8HUgwY3702gUM4/b8KJMbctmFM9XOaGosYWE8Eklzvv6yYVHYHwcjIjKa1T81SYfJ1i+oxfdJyc6EznYFa52FLdVVH+kpjXgnfvdnjv3lT7kty94Oi7YV9VF3xhDVwNK2E5rOkJ0ptVLZyFGTbVIDGkN7ppVLx5Lux1GeqoG/ye39/I/HBd/VmQxCz+37dPRp/Ge7at03m68IAV1ShwxHchOcIeTqRN0/kRme87fuyKwTgFlHHaMsn1Kltpg+UptH8QKpKv08iaR2T/JrvmbHPOgbTjnHYdDST1wUUrgUqgQlLaMDVvQmjtjqBHGvFLjJg9pdgTk5mbzxaRxVLD+DJLUauV53aqNFzIFmVfXhxAZilmmNla+PCP3z5QU9rawAPSgJp2Wh0qGvzTI7gjeWnM+RheIB1G/paxebpRz79ZUtIN/I3OAkP9BkBZJDvc3FY9sRaQ/Q3kN4NXjT2ZNJ+flrjz3uqCJ0RmGZ8=
-    file:
-      - '${TRAVIS_BUILD_DIR}/${RELEASE_COMPONENT}/xloader/target/xloader-${component_version}-dist.zip'
-      - '${TRAVIS_BUILD_DIR}/${RELEASE_COMPONENT}/xsample/target/xstorOperations-${component_version}-dist.zip'
-    skip_cleanup: true
-    overwrite: false
-    on:
-      repo: kusid/test-travis-releases
-      branch: master
-      condition: ${RELEASE_COMPONENT} = xstore && ${RELEASE} = "true"
-    name: ${RELEASE_COMPONENT}-${component_version}
-    body: Automated xstore build from $TRAVIS_BRANCH ($TRAVIS_COMMIT) built by Travis CI on $(date +'%F %T %Z').
