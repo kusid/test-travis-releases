@@ -25,7 +25,7 @@ before_deploy:
   - pwd
   - ls -lA
   - export GIT_TAG="${RELEASE_COMPONENT}-v${component_version}"
-  - git tag $GIT_TAG -a -m "Tagging from TravisCI for build $TRAVIS_BUILD_NUMBER"
+  - if [ ${DOCKER_RELEASE} != "true" ]; then git tag $GIT_TAG -a -m "Tagging from TravisCI for build $TRAVIS_BUILD_NUMBER"; fi
   - git push -q https://${GH_TOKEN}@github.com/kusid/test-travis-releases.git --tags
 
 deploy:
