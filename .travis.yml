@@ -79,7 +79,7 @@ deploy:
       condition: ${RELEASE_COMPONENT} = xstore && ${RELEASE_SONATYPE} = "true"
 
   - provider: script
-    script: bash $TRAVIS_BUILD_DIR/scripts/publish_docker.sh ${component_version} $TRAVIS_BUILD_DIR/xdl/build/
+    script: bash $TRAVIS_BUILD_DIR/xdl/scripts/publish_docker.sh ${component_version} $TRAVIS_BUILD_DIR/xdl/build/
     on:
       repo: FINRAOS/herd-mdl
       branch: master
