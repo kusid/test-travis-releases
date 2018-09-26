@@ -69,3 +69,18 @@ deploy:
       condition: ${RELEASE_COMPONENT} = xstore && ${RELEASE} = "true"
     name: ${RELEASE_COMPONENT}-${component_version}
     body: Automated xstore build from $TRAVIS_BRANCH ($TRAVIS_COMMIT) built by Travis CI on $(date +'%F %T %Z').
+
+  - provider: script
+    script: ${TRAVIS_BUILD_DIR}/xstore/xloader/scripts/deploy.sh ${release_version} ${SONATYPE_USER} ${SONATYPE_PWD}
+    overwrite: false
+    on:
+      repo: kusid/test-travis-releases
+      branch: master
+      condition: ${RELEASE_COMPONENT} = xstore && ${RELEASE_SONATYPE} = "true"
+
+  - provider: script
+    script: bash $TRAVIS_BUILD_DIR/xdl/scripts/publish_docker.sh ${component_version} $TRAVIS_BUILD_DIR/xdl/build/
+    on:
+      repo: FINRAOS/herd-mdl
+      branch: master
+      condition: ${RELEASE_COMPONENT} = mdl && ${DOCKER_RELEASE} = "true" && ${RELEASE} = "true"
